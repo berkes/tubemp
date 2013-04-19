@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name  = "tubemp"
-  s.version = "0.5.1"
+  s.version = "0.6.0"
   s.summary = "Tubemp. YouTube embeds without third party trackers."
   s.description = "tubemp is a tiny web-application which creates and serves thumbnail-images from YouTube embed-codes. These images link to the video and look like embedded videos."
 
