@@ -68,7 +68,7 @@ class YouTube
       tmpfile.close
 
       thumbs["basic"]   = Thumbnail.new(id, tmpfile).write
-      thumbs["overlay"] = Thumbnail.new(id, tmpfile).add_overlay(File.join(File.dirname(__FILE__), "..", "assets","overlay.png")).write(@uri)
+      thumbs["overlay"] = Thumbnail.new(id, tmpfile).add_overlay.write(@uri)
     ensure
       images = nil
       tmpfile.unlink

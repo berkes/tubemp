@@ -7,8 +7,10 @@ require 'thumbnail.rb'
 
 include ERB::Util
 
+GEMDIR = Pathname.new(File.expand_path(File.join(File.dirname(__FILE__), '..')))
+
 class Tubemp < Sinatra::Application
-  this_dir = Pathname.new(File.dirname(__FILE__))
+  this_dir = GEMDIR.join("lib")
   set :views,  this_dir.join("views")
   set :public_folder, this_dir.join("public")
 
