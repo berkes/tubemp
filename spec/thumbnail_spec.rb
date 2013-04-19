@@ -82,6 +82,21 @@ describe Thumbnail do
     it 'should be chainable' do
       @thumbnail.add_overlay.should be_kind_of(Thumbnail)
     end
+
+    it 'should prefer an overlay-image from current dir' do
+      assets_dir = File.join("/", "tmp", "assets")
+      FileUtils.mkdir_p(assets_dir)
+      FileUtils.cp(File.join("assets", "overlay.png"), File.join(assets_dir, "overlay.png"))
+      Dir.stub(:pwd).and_return("/tmp")
+
+      @thumbnail.add_overlay
+      # Don't know how to fetch the current_filename or Filename from Magick::Image
+      #  so using #inspect and regexing that.
+      @thumbnail.images.last.inspect.should match %r{/tmp/assets/overlay\.png .*}
+
+      FileUtils.rm_r(assets_dir)
+    end
+
   end
 
   describe "uri_path" do
