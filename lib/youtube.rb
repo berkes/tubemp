@@ -30,7 +30,7 @@ class YouTube
 
   def valid?
     parse
-    not @meta.nil?
+    not @meta.title.nil?
   end
 
   def id
