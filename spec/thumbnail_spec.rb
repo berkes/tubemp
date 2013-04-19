@@ -19,9 +19,9 @@ describe Thumbnail do
     end
 
     it 'should include overlay filenames in filename' do
-      @thumbnail.add_overlay @tmpfile #contains the name "thumb"
+      @thumbnail.add_overlay
       @thumbnail.write
-      File.should exist(File.join(@container, "#{@id}_thumb.png"))
+      File.should exist(File.join(@container, "#{@id}_overlay.png"))
     end
 
     it 'should be chainable' do
@@ -67,7 +67,7 @@ describe Thumbnail do
     before do
       @overlay_name = File.join("assets", "overlay.png")
       @expected = Magick::ImageList.new(@overlay_name)[0]
-      @thumbnail.add_overlay @overlay_name
+      @thumbnail.add_overlay
     end
 
     it 'should add files to ImageList stack' do
@@ -80,7 +80,7 @@ describe Thumbnail do
     end
 
     it 'should be chainable' do
-      @thumbnail.add_overlay(@overlay_name).should be_kind_of(Thumbnail)
+      @thumbnail.add_overlay.should be_kind_of(Thumbnail)
     end
   end
 

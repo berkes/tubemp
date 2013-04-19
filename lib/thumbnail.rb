@@ -31,9 +31,11 @@ class Thumbnail
     self
   end
 
-  def add_overlay(filename)
+  def add_overlay
+    @filename_parts << "overlay"
+
+    filename = File.join(File.dirname(__FILE__), "..", "assets","overlay.png")
     @images << Magick::ImageList.new(filename)[0]
-    @filename_parts << File.basename(filename, ".*")
 
     self
   end
