@@ -83,7 +83,9 @@ describe YouTube do
 
   describe "invalid-ID" do
     before do
-      VideoInfo.stub(:get).and_return nil
+      info = mock(VideoInfo)
+      info.stub(:title).and_return nil
+      VideoInfo.stub(:get).and_return info
       @yt = YouTube.new("INVALID")
     end
 

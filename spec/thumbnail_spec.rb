@@ -19,9 +19,9 @@ describe Thumbnail do
     end
 
     it 'should include overlay filenames in filename' do
-      @thumbnail.add_overlay @tmpfile #contains the name "thumb"
+      @thumbnail.add_overlay
       @thumbnail.write
-      File.should exist(File.join(@container, "#{@id}_thumb.png"))
+      File.should exist(File.join(@container, "#{@id}_overlay.png"))
     end
 
     it 'should be chainable' do
@@ -67,7 +67,7 @@ describe Thumbnail do
     before do
       @overlay_name = File.join("assets", "overlay.png")
       @expected = Magick::ImageList.new(@overlay_name)[0]
-      @thumbnail.add_overlay @overlay_name
+      @thumbnail.add_overlay
     end
 
     it 'should add files to ImageList stack' do
@@ -80,8 +80,23 @@ describe Thumbnail do
     end
 
     it 'should be chainable' do
-      @thumbnail.add_overlay(@overlay_name).should be_kind_of(Thumbnail)
+      @thumbnail.add_overlay.should be_kind_of(Thumbnail)
     end
+
+    it 'should prefer an overlay-image from current dir' do
+      assets_dir = File.join("/", "tmp", "assets")
+      FileUtils.mkdir_p(assets_dir)
+      FileUtils.cp(File.join("assets", "overlay.png"), File.join(assets_dir, "overlay.png"))
+      Dir.stub(:pwd).and_return("/tmp")
+
+      @thumbnail.add_overlay
+      # Don't know how to fetch the current_filename or Filename from Magick::Image
+      #  so using #inspect and regexing that.
+      @thumbnail.images.last.inspect.should match %r{/tmp/assets/overlay\.png .*}
+
+      FileUtils.rm_r(assets_dir)
+    end
+
   end
 
   describe "uri_path" do

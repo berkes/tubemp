@@ -31,9 +31,13 @@ class Thumbnail
     self
   end
 
-  def add_overlay(filename)
+  def add_overlay
+    @filename_parts << "overlay"
+
+    filename = File.join(Dir.pwd, "assets","overlay.png")
+    # Fallback to asset packaged with gem
+    filename = GEMDIR.join("assets", "overlay.png") unless File.exists? filename
     @images << Magick::ImageList.new(filename)[0]
-    @filename_parts << File.basename(filename, ".*")
 
     self
   end
