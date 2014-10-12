@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sinatra', '~> 1.4'
   s.add_runtime_dependency 'rmagick', '~> 2.13'
   s.add_runtime_dependency 'video_info', '~> 1.1'
-  s.add_runtime_dependency 'capistrano', '~> 2.14'
   s.add_runtime_dependency 'json', '~> 1.7.7'
 
   s.add_development_dependency 'rspec', '~> 2.13'
