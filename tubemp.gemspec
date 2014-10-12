@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name  = "tubemp"
-  s.version = "0.6.0"
+  s.version = "0.7.0"
   s.summary = "Tubemp. YouTube embeds without third party trackers."
   s.description = "tubemp is a tiny web-application which creates and serves thumbnail-images from YouTube embed-codes. These images link to the video and look like embedded videos."
 
@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'sinatra', '~> 1.4'
   s.add_runtime_dependency 'rmagick', '~> 2.13'
   s.add_runtime_dependency 'video_info', '~> 1.1'
-  s.add_runtime_dependency 'capistrano', '~> 2.14'
   s.add_runtime_dependency 'json', '~> 1.7.7'
 
   s.add_development_dependency 'rspec', '~> 2.13'
